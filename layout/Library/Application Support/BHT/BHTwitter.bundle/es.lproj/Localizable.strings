@@ -412,24 +412,24 @@
 "SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "Elige cuánto tiempo estará visible el botón de Deshacer después de publicar un Tweet.";
 
 /* Presets — settings import and export */
-"SETTINGS_EXPORT_TITLE" = "Exportar configuración";
-"SETTINGS_IMPORT_TITLE" = "Importar configuración";
+"SETTINGS_EXPORT_TITLE" = "Exportar ajustes";
+"SETTINGS_IMPORT_TITLE" = "Importar ajustes";
 
 "SETTINGS_EXPORT_FAILED_TITLE" = "Error al exportar";
-"SETTINGS_EXPORT_WRITE_FAILED" = "No se pudo crear el archivo de configuración.";
+"SETTINGS_EXPORT_WRITE_FAILED" = "No se pudo crear el archivo de ajustes.";
 
-"SETTINGS_IMPORT_CONFIRM_TITLE" = "¿Importar configuración?";
-"SETTINGS_IMPORT_CONFIRM_MESSAGE" = "La configuración actual de NeoFreeBird será reemplazada por la del archivo que elijas.";
-"SETTINGS_IMPORT_CONFIRM_BUTTON" = "Elegir Archivo";
+"SETTINGS_IMPORT_CONFIRM_TITLE" = "¿Importar ajustes?";
+"SETTINGS_IMPORT_CONFIRM_MESSAGE" = "Los ajustes actuales de NeoFreeBird serán reemplazados por los del archivo que elijas.";
+"SETTINGS_IMPORT_CONFIRM_BUTTON" = "Elegir archivo";
 "SETTINGS_IMPORT_FAILED_TITLE" = "Error al importar";
-"SETTINGS_IMPORT_SUCCESS_TITLE" = "Configuración importada";
-"SETTINGS_IMPORT_SUCCESS_MESSAGE" = "Se aplicaron %ld configuraciones. Reinicia la aplicación para que surtan efecto.";
+"SETTINGS_IMPORT_SUCCESS_TITLE" = "Ajustes importados";
+"SETTINGS_IMPORT_SUCCESS_MESSAGE" = "Se aplicaron %ld ajustes. Reinicia la aplicación para que surtan efecto.";
 "SETTINGS_IMPORT_RESTART_BUTTON" = "Reiniciar";
 "SETTINGS_IMPORT_LATER_BUTTON" = "Más tarde";
 
 "SETTINGS_TRANSFER_UNREADABLE_FILE" = "No se pudo leer el archivo.";
-"SETTINGS_TRANSFER_MALFORMED_FILE" = "El archivo no corresponde a una configuración de NeoFreeBird.";
-"SETTINGS_TRANSFER_NO_SETTINGS" = "El archivo no contiene ninguna configuración compatible con esta versión.";
+"SETTINGS_TRANSFER_MALFORMED_FILE" = "El archivo no contiene ajustes válidos de NeoFreeBird.";
+"SETTINGS_TRANSFER_NO_SETTINGS" = "El archivo no contiene ajustes compatibles con esta versión.";
 
 /* Common UI Elements & Time Selectors */
 "Off" = "Desactivado";
