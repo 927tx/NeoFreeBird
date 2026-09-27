@@ -9,11 +9,18 @@
 /*Alerts and popups*/
 
 "CONFIRM_ALERT_MESSAGE" = "¿Seguro que quieres hacer esto?";
-
+"CANCEL_ACTION_LABEL" = "Cancelar";
+"CONTINUE_ACTION_LABEL" = "Continuar";
 "YES_ACTION_LABEL" = "Sí";
 "NO_ACTION_LABEL" = "No";
+"DONE" = "Listo";
+"SAVE" = "Guardar";
+"SAVE_ACTION_LABEL" = "Guardar";
+"OK_ACTION_LABEL" = "OK";
 
 /*Settings*/
+
+
 "MODERN_SETTINGS_LAYOUT_TITLE" = "General";
 "MODERN_SETTINGS_LAYOUT_SUBTITLE" = "Bloquea la app, mantén visible la barra de navegación y más.";
 
@@ -44,6 +51,7 @@
 "MODERN_SETTINGS_PRESETS_TITLE" = "Preajustes";
 "MODERN_SETTINGS_PRESETS_SUBTITLE" = "Aplica un conjunto de ajustes preconfigurados, o exporta e importa los tuyos.";
 
+
 "MODERN_SETTINGS_WEB_TITLE" = "Web y enlaces";
 "MODERN_SETTINGS_WEB_SUBTITLE" = "Ajusta el comportamiento de los enlaces y del navegador integrado de Twitter.";
 
@@ -60,7 +68,20 @@
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "Agradecimientos especiales";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "Sigue a NeoFreeBird";
 
+
 /*General*/
+
+"NO_FOCUS_LOST_TITLE" = "Mantener la posición";
+"NO_FOCUS_LOST_DETAIL" = "Impide que Twitter detecte cuando cambias a otra aplicación, para que no pierdas tu lugar en un hilo.";
+
+"HIDE_BLOCKED_RETWEETS_TITLE" = "Ocultar Retweets de cuentas bloqueadas";
+"HIDE_BLOCKED_RETWEETS_DETAIL" = "Oculta los Retweets de cuentas que te han bloqueado.";
+
+"USE_TENOR_GIFS_TITLE" = "Usar GIFs de Tenor";
+"USE_TENOR_GIFS_DETAIL" = "Usa los GIFs de Tenor en lugar de los GIFs de Twitter (GIPHY). Tenor ofrece más opciones.";
+
+"HIDE_MESSAGE_BUTTON_TITLE" = "Sin botón de \"Mensaje\" en los Tweets";
+"HIDE_MESSAGE_BUTTON_DETAIL" = "Oculta el botón de \"Mensaje\" en los Tweets.";
 
 "HIDE_WHO_TO_FOLLOW_TITLE" = "Sin \"A quién seguir\"";
 "HIDE_WHO_TO_FOLLOW_DETAIL" = "Elimina las sugerencias de seguimiento.";
@@ -162,8 +183,8 @@
 "DISABLE_HIGHLIGHTS_TITLE" = "Sin pestaña de Destacados";
 "DISABLE_HIGHLIGHTS_DETAIL" = "Oculta la pestaña de Destacados en los perfiles.";
 
-"HIDE_FOLLOW_BUTTON_TITLE" = "Sin botón de Seguir en los Tweets";
-"HIDE_FOLLOW_BUTTON_DETAIL" = "Oculta el botón de Seguir en los Tweets.";
+"HIDE_FOLLOW_BUTTON_TITLE" = "Sin botón de \"Seguir\" en los Tweets";
+"HIDE_FOLLOW_BUTTON_DETAIL" = "Oculta el botón de \"Seguir\" en los Tweets.";
 
 "RESTORE_FOLLOW_BUTTON_TITLE" = "Sin botón de Suscribirse";
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "Oculta el botón de Suscribirse en los Tweets y en los perfiles.";
@@ -181,6 +202,7 @@
 /*Photos and Videos*/
 "AUTO_HIGHEST_LOAD_TITLE" = "Multimedia de alta calidad";
 "AUTO_HIGHEST_LOAD_DETAIL" = "Carga siempre fotos y vídeos en la mayor resolución posible.";
+
 
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "Sin subtítulos en vídeos";
 
@@ -205,6 +227,9 @@
 
 "DOWNLOAD_VIDEOS_TITLE" = "Descargar multimedia";
 "DOWNLOAD_VIDEOS_DETAIL" = "Guarda vídeos o GIFs directamente desde el menú de opciones del Tweet.";
+
+"DOWNLOAD_HIGHEST_QUALITY_TITLE" = "Siempre descargar en la más alta calidad";
+"DOWNLOAD_HIGHEST_QUALITY_DETAIL" = "Omite el selector de calidad y guarda el mejor MP4 de inmediato.";
 
 "UPLOAD_FULL_HD_VIDEOS_TITLE" = "Subir vídeos en Full HD";
 "UPLOAD_FULL_HD_VIDEOS_DETAIL" = "Desbloquea la posibilidad de subir vídeos en 1080p.";
@@ -354,6 +379,10 @@
 "LEGACY_LOGIN_VERIFYING_STATUS" = "Verificando…";
 "LEGACY_LOGIN_SIGNING_IN_STATUS" = "Iniciando sesión…";
 "LEGACY_LOGIN_UNAVAILABLE_TITLE" = "No disponible";
+"PHONE_OR_EMAIL_OR_USERNAME_LABEL" = "Teléfono, correo o nombre de usuario";
+"PASSWORD_LABEL" = "Contraseña";
+"LOG_IN_ACTION_LABEL" = "Iniciar sesión";
+"LOG_IN_TITLE" = "Iniciar sesión";
 "LEGACY_LOGIN_CLASSES_MISSING_MESSAGE" = "Faltan las clases de inicio de sesión.";
 "LEGACY_LOGIN_BUILD_COMMAND_FAILED_MESSAGE" = "No se ha podido crear el comando.";
 "LEGACY_LOGIN_CRASH_AVOIDED_TITLE" = "Bloqueo evitado";
@@ -368,3 +397,49 @@
 "LEGACY_LOGIN_RATE_LIMITED_TITLE" = "Posible límite de intentos (243)";
 "LEGACY_LOGIN_RATE_LIMITED_MESSAGE" = "Demasiados intentos. Espera un momento o cambia de red/VPN, y vuelve a intentarlo.\n\nDetalles:\n%@";
 "LEGACY_LOGIN_UNKNOWN_ERROR" = "Error desconocido";
+
+"DOWNLOAD_ACTIVITY_VIEW_LABEL" = "Descargar multimedia";
+"DOWNLOAD_LIVE_ACTIVITY_DOWNLOADING" = "Descargando";
+
+/* Subscription Keys */
+"SUBSCRIPTION_APP_ICON_SETTINGS_TITLE" = "Cambiar el icono de la aplicación";
+"SUBSCRIPTION_APP_ICON_SETTINGS_DETAIL" = "Elige un icono personalizado para la pantalla de inicio de tu dispositivo. Puedes cambiarlo en cualquier momento.";
+
+"SUBSCRIPTION_TAB_CUSTOMIZATION_RESTORE_BUTTON_TITLE" = "Restaurar valores predeterminados";
+"Restore to default" = "Restaurar valores predeterminados";
+
+"SUBSCRIPTION_UNDO_SEND_DURATION_TITLE" = "Tiempo para Deshacer";
+"SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "Elige cuánto tiempo estará visible el botón de Deshacer después de publicar un Tweet.";
+
+/* Presets — settings import and export */
+"SETTINGS_EXPORT_TITLE" = "Exportar configuración";
+"SETTINGS_IMPORT_TITLE" = "Importar configuración";
+
+"SETTINGS_EXPORT_FAILED_TITLE" = "Error al exportar";
+"SETTINGS_EXPORT_WRITE_FAILED" = "No se pudo crear el archivo de configuración.";
+
+"SETTINGS_IMPORT_CONFIRM_TITLE" = "¿Importar configuración?";
+"SETTINGS_IMPORT_CONFIRM_MESSAGE" = "La configuración actual de NeoFreeBird será reemplazada por la del archivo que elijas.";
+"SETTINGS_IMPORT_CONFIRM_BUTTON" = "Elegir Archivo";
+"SETTINGS_IMPORT_FAILED_TITLE" = "Error al importar";
+"SETTINGS_IMPORT_SUCCESS_TITLE" = "Configuración importada";
+"SETTINGS_IMPORT_SUCCESS_MESSAGE" = "Se aplicaron %ld configuraciones. Reinicia la aplicación para que surtan efecto.";
+"SETTINGS_IMPORT_RESTART_BUTTON" = "Reiniciar";
+"SETTINGS_IMPORT_LATER_BUTTON" = "Más tarde";
+
+"SETTINGS_TRANSFER_UNREADABLE_FILE" = "No se pudo leer el archivo.";
+"SETTINGS_TRANSFER_MALFORMED_FILE" = "El archivo no corresponde a una configuración de NeoFreeBird.";
+"SETTINGS_TRANSFER_NO_SETTINGS" = "El archivo no contiene ninguna configuración compatible con esta versión.";
+
+/* Common UI Elements & Time Selectors */
+"Off" = "Desactivado";
+"Cancel" = "Cancelar";
+"5 seconds" = "5 segundos";
+"10 seconds" = "10 segundos";
+"20 seconds" = "20 segundos";
+"30 seconds" = "30 segundos";
+"60 seconds" = "60 segundos";
+
+/* Undo Duration Labels (Added for TweetsSettingsViewController) */
+"GENERIC_OFF_LABEL" = "Desactivado";
+"SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld segundos";
