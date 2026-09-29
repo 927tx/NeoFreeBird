@@ -87,7 +87,7 @@
 "NEW_INAPP_WEBVIEW_DETAIL" = "リンクを開く際に、Xの新しいアプリ内ブラウザを使用します。";
 
 "ALWAYS_OPEN_SAFARI_TITLE" = "外部ブラウザで開く";
-"ALWAYS_OPEN_SAFARI_DETAIL" = "リンクをSafariまたはデフォルトのブラウザで開きます。";
+"ALWAYS_OPEN_SAFARI_DETAIL" = "リンクをSafari、またはデフォルトのブラウザで開きます。";
 
 "SHARING_DOMAIN_TITLE" = "共有ドメイン";
 
@@ -179,6 +179,9 @@
 
 "HIDE_FOLLOW_BUTTON_TITLE" = "フォローボタンを非表示";
 "HIDE_FOLLOW_BUTTON_DETAIL" = "ポストに表示される「フォロー」ボタンを非表示にします。";
+
+"HIDE_MESSAGE_BUTTON_TITLE" = "ポスト内のDMボタンを非表示";
+"HIDE_MESSAGE_BUTTON_DETAIL" = "ポスト内のDMボタンを非表示にする"
 
 "RESTORE_FOLLOW_BUTTON_TITLE" = "「サブスクライブする」ボタンを非表示";
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "ポストやプロフィールに表示される「サブスクライブする」ボタンを非表示にします。";
@@ -349,7 +352,7 @@
 
 "LOCATION_UNAVAILABLE" = "位置情報を利用できません";
 
-"CONTRIBUTOR_PAGE_SECTION_HEADER_TITLE" = "コントリビューター";
+"CONTRIBUTOR_PAGE_SECTION_HEADER_TITLE" = "貢献者";
 
 /*App lock*/
 "PADLOCK_LOCKED_LABEL" = "ロック中";
@@ -402,7 +405,7 @@
 "Restore to default" = "デフォルトに戻す";
 
 "SUBSCRIPTION_UNDO_SEND_DURATION_TITLE" = "送信取り消し時間";
-"SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "ツイート送信後、送信取り消しボタンを表示しておく時間を選択します。";
+"SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "ポスト送信後、送信取り消しボタンを表示しておく時間を選択します。";
 
 /* Presets — settings import and export */
 "SETTINGS_EXPORT_TITLE" = "設定のエクスポート";
