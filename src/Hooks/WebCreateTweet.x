@@ -869,9 +869,12 @@ static BOOL isPeriscopeAuthURL(NSURL* url) {
            [path hasSuffix:@"/oauth/authenticate_periscope.json"];
 }
 
+static BOOL isMuteURL(NSURL* url) { return url && [url.path containsString:@"/1.1/mutes"]; }
+
 // CreateTweet needs to go through the web path, otherwise AppAttest kicks in
 static BOOL isWriteRequest(NSURL* url) {
-    return isCreateTweetURL(url) || isAccountURL(url) || isPeriscopeAuthURL(url);
+    return isCreateTweetURL(url) || isAccountURL(url) || isPeriscopeAuthURL(url)
+    || isMuteURL(url);
 }
 
 static NSURL* webEquivalentURL(NSURL* url) {
@@ -883,6 +886,11 @@ static NSURL* webEquivalentURL(NSURL* url) {
     if (c && isPeriscopeAuthURL(url)) {
         c.host = @"x.com";
         c.path = @"/i/api/1.1/oauth/authenticate_periscope.json";
+        return c.URL ?: url;
+    }
+    if (c && isMuteURL(url)) {
+        c.host = @"x.com";
+        c.path = [@"/i/api" stringByAppendingString:[c.path substringFromIndex:[c.path rangeOfString:@"/1.1/mutes"].location]];
         return c.URL ?: url;
     }
     NSString* path = c.path ?: @"";
