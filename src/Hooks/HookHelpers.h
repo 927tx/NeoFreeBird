@@ -24,10 +24,10 @@
 #import "Headers/TWHeaders.h"
 #import "LegacyLogin/LegacyLoginViewController.h"
 #import "Padlock/AuthViewController.h"
-#import "WebLogin/WebLoginViewController.h"
 #import "Settings/ModernSettingsViewController.h"
 #import "ThemeColor/BHTDimPalette.h"
 #import "ThemeColor/Palette.h"
+#import "WebLogin/WebLoginViewController.h"
 
 // Recursive view traversal (BHTHookHelpers.m)
 void EnumerateSubviewsRecursively(UIView* view,

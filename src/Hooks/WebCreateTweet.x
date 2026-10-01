@@ -549,8 +549,6 @@ static NSString* createTweetPath(void) {
 
 static void prewarmCreateTweetXTID(void) { refreshXTIDForMethodPath(@"POST", createTweetPath()); }
 
-
-
 static NSString* transactionIdForRequest(NSURLRequest* request) {
     NSURL* url = request.URL;
     if (url.path.length == 0) {
@@ -860,8 +858,7 @@ static BOOL resolveWebCreds(NSString* userID, NSString** outAuthToken, NSString*
 
 static BOOL isCreateTweetURL(NSURL* url) { return url && [url.path hasSuffix:@"/CreateTweet"]; }
 
-static BOOL isAccountURL(NSURL* url) { return url && ([url.path containsString:@"/1.1/account"] 
-|| [url.path containsString:@"/1.1/users/"]); }
+static BOOL isAccountURL(NSURL* url) { return url && ([url.path containsString:@"/1.1/account"] || [url.path containsString:@"/1.1/users/"]); }
 
 static BOOL isPeriscopeAuthURL(NSURL* url) {
     NSString* path = url.path ?: @"";
@@ -873,8 +870,7 @@ static BOOL isMuteURL(NSURL* url) { return url && [url.path containsString:@"/1.
 
 // CreateTweet needs to go through the web path, otherwise AppAttest kicks in
 static BOOL isWriteRequest(NSURL* url) {
-    return isCreateTweetURL(url) || isAccountURL(url) || isPeriscopeAuthURL(url)
-    || isMuteURL(url);
+    return isCreateTweetURL(url) || isAccountURL(url) || isPeriscopeAuthURL(url) || isMuteURL(url);
 }
 
 static NSURL* webEquivalentURL(NSURL* url) {
@@ -941,12 +937,12 @@ static void applyWebAuth(NSMutableURLRequest* request, NSString* authToken, NSSt
 
     BOOL isWrite = isWriteRequest(request.URL);
     NSArray<NSString*>* headersToStrip = isWrite
-        ? @[
-              @"Authorization", @"X-Twitter-Client-DeviceID", @"X-Twitter-Client-Version",
-              @"X-Twitter-Client", @"X-Twitter-API-Version", @"X-Twitter-Client-Limit-Ad-Tracking",
-              @"X-B3-TraceId", @"Timezone", @"kdt", @"X-Client-UUID", @"Host"
-          ]
-        : @[ @"Authorization", @"X-B3-TraceId", @"Host" ];
+                                             ? @[
+                                                   @"Authorization", @"X-Twitter-Client-DeviceID", @"X-Twitter-Client-Version",
+                                                   @"X-Twitter-Client", @"X-Twitter-API-Version", @"X-Twitter-Client-Limit-Ad-Tracking",
+                                                   @"X-B3-TraceId", @"Timezone", @"kdt", @"X-Client-UUID", @"Host"
+                                               ]
+                                             : @[@"Authorization", @"X-B3-TraceId", @"Host"];
     for (NSString* header in headersToStrip) {
         [request setValue:nil forHTTPHeaderField:header];
     }
@@ -1179,7 +1175,7 @@ static NSDictionary* cachedWebSessionForAccount(id account) {
     }
 
     self = %orig(rootURL, account, NO, shouldPresentAsNativePage, sourceStatus, scribeComponent,
-                 scribeParameters);
+                     scribeParameters);
     if (self) {
         objc_setAssociatedObject(self, WebViewSessionCookiesKey, session,
                                  OBJC_ASSOCIATION_RETAIN_NONATOMIC);

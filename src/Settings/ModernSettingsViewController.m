@@ -455,15 +455,15 @@
     self.tableView.tableFooterView = footerView;
 }
 
-- (void)footerLabelTapped:(UIGestureRecognizer *)sender {
-    NSURL *url = [NSURL URLWithString:@"https://github.com/orionblur/NeoFreeBird"];
+- (void)footerLabelTapped:(UIGestureRecognizer*)sender {
+    NSURL* url = [NSURL URLWithString:@"https://github.com/orionblur/NeoFreeBird"];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
     }
 }
-- (void)footerLabelLongPressed:(UILongPressGestureRecognizer *)sender {
+- (void)footerLabelLongPressed:(UILongPressGestureRecognizer*)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSURL *url = [NSURL URLWithString:@"https://youtu.be/ScvxT0RItYE"];
+        NSURL* url = [NSURL URLWithString:@"https://youtu.be/ScvxT0RItYE"];
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
         }

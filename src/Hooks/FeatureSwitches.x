@@ -168,7 +168,6 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @(![BHTSettings boolForKey:@"hide_grok_analyze"]);
     }
 
-
     if ([key isEqualToString:@"grok_ios_grok_bot_upsells_enabled"] ||
         [key isEqualToString:@"grok_ios_grok_bot_sidebar_enabled"] ||
         [key isEqualToString:@"grok_ios_grok_bot_home_header_enabled"] ||
@@ -245,8 +244,9 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
     }
 
     if ([key isEqualToString:
-             @"home_timeline_foreground_refresh_min_background_seconds"]) 
-    {return [BHTSettings boolForKey:@"no_focus_lost"] ? @(315360000.0) : nil;}
+                 @"home_timeline_foreground_refresh_min_background_seconds"]) {
+        return [BHTSettings boolForKey:@"no_focus_lost"] ? @(315360000.0) : nil;
+    }
 
     // Communities, Spaces, News and Grok are enabled outright for every account.
     if ([key isEqualToString:@"ai_trends_ios_enable_news_tab"] ||
@@ -457,7 +457,6 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
     return override ? override.doubleValue : %orig;
 }
 
-
 // Some reads, like the default captions setup, only consult the value when the
 // switch reports a non-default one.
 - (BOOL)hasNonDefaultValueForKey:(NSString*)key {
@@ -511,7 +510,6 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
     NSNumber* override = FeatureSwitchOverrideValueForKey(key);
     return override ? override.doubleValue : %orig;
 }
-
 
 %end
 
@@ -906,7 +904,7 @@ static __thread BOOL DashPanelIDQuery = NO;
 
 // MARK: - Video upload quality
 %hook T1VideoQualityUploadSettings
-- (BOOL)shouldAllowFullHdVideoUpload:(long long)upload{
+- (BOOL)shouldAllowFullHdVideoUpload:(long long)upload {
     return [BHTSettings boolForKey:@"upload_full_hd_videos"] ? YES : %orig;
 }
 %end
