@@ -1134,6 +1134,9 @@ NSDictionary* currentWebCredentials(void) {
 
 static const void* WebViewSessionCookiesKey = &WebViewSessionCookiesKey;
 static const void* WebStorePendingLoadKey = &WebStorePendingLoadKey;
+// Marks a data store we seeded for a cookie-login session, so the loadRequest: hook can
+// tell our authenticated webviews apart and bypass the native OAuth auth bridge.
+static const void* WebStoreCookieLoginKey = &WebStoreCookieLoginKey;
 
 // A cookie-login account's cached web session. Never blocks: a missing ct0 is fine,
 // since x.com mints one on the first authenticated page load.
@@ -1186,11 +1189,34 @@ static NSDictionary* cachedWebSessionForAccount(id account) {
     return self;
 }
 
+// Every web view goes through here, store web cookies so that we don't have a miss
+- (void)_t1_sharedInitWithRootURL:(id)rootURL
+                          account:(id)account
+                     sourceStatus:(id)sourceStatus
+                  scribeComponent:(id)scribeComponent
+                 scribeParameters:(id)scribeParameters {
+    %orig;
+    if (objc_getAssociatedObject(self, WebViewSessionCookiesKey)) {
+        return;
+    }
+    NSDictionary* session = cachedWebSessionForAccount(account);
+    if (session) {
+        objc_setAssociatedObject(self, WebViewSessionCookiesKey, session,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+}
+
 // Called from -loadView with the configuration the webview is about to be created with.
 - (id)updateConfiguration:(id)configuration {
     id result = %orig;
 
+    id account = [self respondsToSelector:@selector(account)] ? [self account] : nil;
     NSDictionary* session = objc_getAssociatedObject(self, WebViewSessionCookiesKey);
+    if (!session) {
+        session = cachedWebSessionForAccount(account);
+    }
+
+    NSString* dbgUID = userIDStringForAccount(account);
     WKWebViewConfiguration* config =
         [result isKindOfClass:[WKWebViewConfiguration class]] ? result : configuration;
     if (!session || ![config isKindOfClass:[WKWebViewConfiguration class]]) {
@@ -1200,6 +1226,7 @@ static NSDictionary* cachedWebSessionForAccount(id account) {
     WKWebsiteDataStore* store = [WKWebsiteDataStore nonPersistentDataStore];
     config.websiteDataStore = store;
 
+    objc_setAssociatedObject(store, WebStoreCookieLoginKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(store, WebStorePendingLoadKey, [NSMutableArray array],
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     seedWebSessionCookies(store.httpCookieStore, session, ^{
@@ -1216,18 +1243,43 @@ static NSDictionary* cachedWebSessionForAccount(id account) {
 
 %end
 
+static NSURLRequest* unwrapAuthBridgeRequest(NSURLRequest* request) {
+    NSURL* url = request.URL;
+    if (![url.path containsString:@"/account/authenticate_web_view"]) {
+        return request;
+    }
+    NSURLComponents* comps = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+    for (NSURLQueryItem* item in comps.queryItems) {
+        if ([item.name isEqualToString:@"redirect_url"] && item.value.length) {
+            NSURL* target = [NSURL URLWithString:item.value];
+            if (target) {
+                NSMutableURLRequest* out = [request mutableCopy];
+                out.URL = target;
+                return out;
+            }
+            break;
+        }
+    }
+    return request;
+}
+
 %hook WKWebView
 - (WKNavigation*)loadRequest:(NSURLRequest*)request {
-    NSMutableArray* pending =
-        objc_getAssociatedObject(self.configuration.websiteDataStore, WebStorePendingLoadKey);
+    WKWebsiteDataStore* store = self.configuration.websiteDataStore;
+    NSURLRequest* effective = request;
+    if (objc_getAssociatedObject(store, WebStoreCookieLoginKey)) {
+        effective = unwrapAuthBridgeRequest(request);
+    }
+
+    NSMutableArray* pending = objc_getAssociatedObject(store, WebStorePendingLoadKey);
     if (!pending) {
-        return %orig;
+        return %orig(effective);
     }
 
     __weak WKWebView* weakSelf = self;
     [pending removeAllObjects];
     [pending addObject:[^{
-                 [weakSelf loadRequest:request];
+                 [weakSelf loadRequest:effective];
              } copy]];
     return nil;
 }
