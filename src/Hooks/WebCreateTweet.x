@@ -868,9 +868,12 @@ static BOOL isPeriscopeAuthURL(NSURL* url) {
 
 static BOOL isMuteURL(NSURL* url) { return url && [url.path containsString:@"/1.1/mutes"]; }
 
-// CreateTweet needs to go through the web path, otherwise AppAttest kicks in
+static BOOL isGrokURL(NSURL* url) { return url && [url.path containsString:@"/2/grok"]; }
+
+// These paths need to go through the web path, otherwise AppAttest kicks in
 static BOOL isWriteRequest(NSURL* url) {
-    return isCreateTweetURL(url) || isAccountURL(url) || isPeriscopeAuthURL(url) || isMuteURL(url);
+    return isCreateTweetURL(url) || isAccountURL(url) || isPeriscopeAuthURL(url) ||
+           isMuteURL(url) || isGrokURL(url);
 }
 
 static NSURL* webEquivalentURL(NSURL* url) {
@@ -1030,8 +1033,8 @@ static NSMutableURLRequest* webRequestFromNativeSend(NSURLRequest* request) {
     }
     applyWebAuth(outgoing, authToken, ct0, postingUserID);
 
-    // Only the write (CreateTweet) is routed to the web endpoint and carries a
-    // transaction id; reads stay native and never need one.
+    // Web writes are routed to the web endpoint and carry a transaction id; reads
+    // stay native and never need one.
     NSString* token = isWriteRequest(outgoing.URL) ? transactionIdForRequest(outgoing) : nil;
     if (token.length) {
         [outgoing setValue:token forHTTPHeaderField:@"x-client-transaction-id"];
@@ -1230,6 +1233,30 @@ static NSDictionary* cachedWebSessionForAccount(id account) {
 }
 %end
 
+static BOOL replaceTaskRequest(NSURLSessionTask* task, NSURLRequest* request) {
+    @try {
+        [task setValue:request forKey:@"originalRequest"];
+        [task setValue:request forKey:@"currentRequest"];
+    } @catch (__unused NSException* exception) {
+        return NO;
+    }
+    return task.currentRequest == request;
+}
+
+%hook NSURLSessionTask
+- (void)resume {
+    NSURLRequest* request = self.currentRequest ?: self.originalRequest;
+    if (self.state == NSURLSessionTaskStateSuspended && isGrokURL(request.URL) &&
+        requestUsesNativeOAuth(request)) {
+        NSMutableURLRequest* outgoing = webRequestFromNativeSend(request);
+        if (outgoing) {
+            replaceTaskRequest(self, outgoing);
+        }
+    }
+    %orig;
+}
+%end
+
 %hook NSURLSession
 
 - (NSURLSessionDataTask*)dataTaskWithRequest:(NSURLRequest*)request {
@@ -1253,6 +1280,29 @@ static NSDictionary* cachedWebSessionForAccount(id account) {
     return %orig;
 }
 
+- (NSURLSessionDataTask*)dataTaskWithRequest:(NSURLRequest*)request
+                                    delegate:(id)delegate {
+    NSMutableURLRequest* outgoing = webRequestFromNativeSend(request);
+    if (outgoing) {
+        NSURLSessionDataTask* task = %orig(outgoing, delegate);
+        watchCreateTweetTask(task, objc_getAssociatedObject(outgoing, WebPostingUIDKey));
+        return task;
+    }
+    return %orig;
+}
+
+- (NSURLSessionDataTask*)dataTaskWithRequest:(NSURLRequest*)request
+                                    delegate:(id)delegate
+                              delegateQueue:(NSOperationQueue*)delegateQueue {
+    NSMutableURLRequest* outgoing = webRequestFromNativeSend(request);
+    if (outgoing) {
+        NSURLSessionDataTask* task = %orig(outgoing, delegate, delegateQueue);
+        watchCreateTweetTask(task, objc_getAssociatedObject(outgoing, WebPostingUIDKey));
+        return task;
+    }
+    return %orig;
+}
+
 - (NSURLSessionUploadTask*)uploadTaskWithRequest:(NSURLRequest*)request fromData:(NSData*)bodyData {
     NSMutableURLRequest* outgoing = webRequestFromNativeSend(request);
     if (outgoing) {
@@ -1267,6 +1317,16 @@ static NSDictionary* cachedWebSessionForAccount(id account) {
     NSMutableURLRequest* outgoing = webRequestFromNativeSend(request);
     if (outgoing) {
         NSURLSessionUploadTask* task = %orig(outgoing, fileURL);
+        watchCreateTweetTask(task, objc_getAssociatedObject(outgoing, WebPostingUIDKey));
+        return task;
+    }
+    return %orig;
+}
+
+- (NSURLSessionUploadTask*)uploadTaskWithStreamedRequest:(NSURLRequest*)request {
+    NSMutableURLRequest* outgoing = webRequestFromNativeSend(request);
+    if (outgoing) {
+        NSURLSessionUploadTask* task = %orig(outgoing);
         watchCreateTweetTask(task, objc_getAssociatedObject(outgoing, WebPostingUIDKey));
         return task;
     }
