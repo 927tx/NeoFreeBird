@@ -181,7 +181,7 @@
 "HIDE_FOLLOW_BUTTON_DETAIL" = "ポストに表示される「フォロー」ボタンを非表示にします。";
 
 "HIDE_MESSAGE_BUTTON_TITLE" = "ポスト内のDMボタンを非表示";
-"HIDE_MESSAGE_BUTTON_DETAIL" = "ポスト内のDMボタンを非表示にする"
+"HIDE_MESSAGE_BUTTON_DETAIL" = "ポスト内のDMボタンを非表示にする";
 
 "RESTORE_FOLLOW_BUTTON_TITLE" = "「サブスクライブする」ボタンを非表示";
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "ポストやプロフィールに表示される「サブスクライブする」ボタンを非表示にします。";
