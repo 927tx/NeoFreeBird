@@ -19,6 +19,7 @@
 "SAVE_ACTION_LABEL" = "保存";
 "OK_ACTION_LABEL" = "OK";
 
+
 /*Settings*/
 "MODERN_SETTINGS_LAYOUT_TITLE" = "一般";
 "MODERN_SETTINGS_LAYOUT_SUBTITLE" = "アプリのロックやナビゲーションバーの表示など、基本的な設定を変更できます。";
@@ -154,9 +155,6 @@
 "RESTORE_REPLY_CONTEXT_TITLE" = "返信コンテキストを復元";
 "RESTORE_REPLY_CONTEXT_DETAIL" = "ポストの下に、そのポストへの返信先を表示します。";
 
-"RESTORE_TWEET_LABELS_TITLE" = "投稿元のラベルを表示";
-"RESTORE_TWEET_LABELS_DETAIL" = "どのクライアントからポストされたかを表示します。";
-
 /*Chat*/
 "HIDE_TYPING_INDICATOR_TITLE" = "「入力中」を非表示";
 "HIDE_TYPING_INDICATOR_DETAIL" = "チャット相手に「入力中」のステータスを送信しないようにします。";
@@ -232,7 +230,6 @@
 
 "DOWNLOAD_HIGHEST_QUALITY_TITLE" = "常に最高画質でダウンロード";
 "DOWNLOAD_HIGHEST_QUALITY_DETAIL" = "画質の選択画面をスキップして、最高画質のMP4をすぐに保存します。";
-
 
 "DOWNLOAD_ALL_VIDEOS_TITLE" = "すべての動画をダウンロード";
 "DOWNLOAD_ALL_VIDEOS_DETAIL" = "ポスト内のすべての動画をダウンロードするオプションを追加します。";
@@ -421,7 +418,6 @@
 /* Presets — settings import and export */
 "SETTINGS_EXPORT_TITLE" = "設定のエクスポート";
 "SETTINGS_IMPORT_TITLE" = "設定のインポート";
-
 
 "CUSTOM_SEND_SOUND_TITLE" = "送信音をインポート";
 "CUSTOM_SEND_SOUND_DEFAULT" = "カスタムサウンドが選択されていません";
