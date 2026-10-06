@@ -72,13 +72,13 @@
 "HIDE_WHO_TO_FOLLOW_TITLE" = "「おすすめアカウント」を非表示";
 "HIDE_WHO_TO_FOLLOW_DETAIL" = "フォロー候補として表示されるアカウントを非表示にします。";
 
-"NO_FOCUS_LOST_TITLE" = "フォーカスを失わない";
+"NO_FOCUS_LOST_TITLE" = "フォーカスを維持";
 "NO_FOCUS_LOST_DETAIL" = "別のアプリに切り替えたことをTwitterが検知するのをブロックするため、スレッド内で読んでいた位置を見失うことがなくなります。";
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "タイムラインの案内を非表示";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "「連絡先を追加」などの案内バナーを非表示にします。";
 
-"HIDE_BLOCKED_RETWEETS_TITLE" = "自分をブロックしたユーザーのリポストを非表示";
+"HIDE_BLOCKED_RETWEETS_TITLE" = "私をブロック中ユーザーのRP非表示";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "あなたをブロックしているアカウントのリポストを非表示にします。";
 
 "PADLOCK_TITLE" = "Xをロック";
@@ -187,7 +187,7 @@
 "HIDE_MESSAGE_BUTTON_TITLE" = "ポスト内のDMボタンを非表示";
 "HIDE_MESSAGE_BUTTON_DETAIL" = "ポスト内のDMボタンを非表示にします。";
 
-"RESTORE_FOLLOW_BUTTON_TITLE" = "「サブスクライブする」ボタンを非表示";
+"RESTORE_FOLLOW_BUTTON_TITLE" = "サブスクボタンを非表示";
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "ポストやプロフィールに表示される「サブスクライブする」ボタンを非表示にします。";
 
 "SHOW_UNROUNDED_COUNTS_TITLE" = "正確な数値を表示";
@@ -346,7 +346,7 @@
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "ダークブルーテーマを適用するには、アプリを再起動する必要があります。";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "再起動";
 
-"HIDE_VERIFIED_TWEETS_TITLE" = "認証済みアカウントのポストを非表示";
+"HIDE_VERIFIED_TWEETS_TITLE" = "認証アカウントのポスト非表示";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "タイムラインとリプライから認証済みアカウントのポストを非表示にします。ただし、そのアカウントをフォローしている場合や、投稿者が同じスレッド内で返信している場合は除きます。";
 
 "HIDE_TWEET_BUTTON_TITLE" = "ポストボタンを非表示";
